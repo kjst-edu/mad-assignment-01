@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.kjst-edu_PAT_TOKEN }}
     - name: Install nbstripout
       run: pip install nbstripout
     - name: Remove notebook metadata
