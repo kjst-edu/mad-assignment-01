@@ -1,0 +1,20 @@
+name: Cleanup Notebook Metadata
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  cleanup-notebook-metadata:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install nbstripout
+      run: pip install nbstripout
+    - name: Remove notebook metadata
+      run: nbstripout *.ipynb
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: 'Remove notebook metadata [skip ci]'
